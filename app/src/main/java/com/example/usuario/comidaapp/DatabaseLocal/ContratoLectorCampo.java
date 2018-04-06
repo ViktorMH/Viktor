@@ -101,29 +101,34 @@ final class ContratoLectorCampo {
             "(4,'Sémola')," + //4
             "(5,'Quinua')," + //5
             "(6,'Arroz')," + //6
-            "(7,'Picante')," + //7
 
+            "(7,'Picante')," + //7
             "(8,'Guiso de Fideos')," + //8
             "(9,'Lentejas')," + //9
             "(10,'Tallarín')," + //10
-            "(11,'Piernas de pollo',0.0)," + //11
+            "(11,'Arvejitas')," + //11
+            "(12,'Pallares')," + //12
+            "(13,'Frejoles')," + //13
+            "(14,'Chanfainita')," + //14
+            "(15,'Cau cau')," + //15
 
-            "(12,'Porciones para Salchipapas',0.0)," + //12
-            "(13,'Porciones para Salchitodo',0.0)," + //13
-            "(14,'Porciones para choripapa',0.0)," + //14
-
-            "(15,'Huevos',0.0)," + //15
-
-            "(16,'Vasos de Lemon frozen 14 oz.',0.0)," + //16
-            "(17,'Vasos de Chicha morada de 14 oz.',0.0)," + //17
-            "(18,'Botellas de Coca cola',0.0)," + //18
-            "(19,'Botellas de Fanta',0.0)," + //19
-            "(20,'Botellas de Inca Kola',0.0)," + //20
-            "(21,'Botellas de Agua mineral',0.0)," + //21
-            "(22,'Vasos de 10 oz.',0.0)," + //22
-            "(23,'Vasos de oz. desconocidas',0.0)," +//23
-            "(24,'Hamurguesa de cordero',0.0)," + //24
-            "(25,'Kilométrico',0.0);"; //25
+            "(16,'Pollo al horno')," + //16
+            "(17,'Bistec a la olla')," + //17
+            "(18,'Arroz con pollo')," + //18
+            "(19,'Saltado de mollejitas')," + //19
+            "(20,'Papa Rellena')," + //20
+            "(21,'Asado de carne')," + //21
+            "(22,'Asado de pollo')," + //22
+            "(23,'Pollo al sillao')," +//23
+            "(24,'Carne frita')," +
+            "(25,'Pollo Frito')," +
+            "(26,'Queso frito')," +
+            "(27,'Ají de gallina')," +
+            "(28,'Tallarín con pollo')," +
+            "(29,'Trucha frita')," +
+            "(30,'Hígado frito')," +
+            "(31,'Pescado frito')," +
+            "(32,'Pejerrey frito');";
 
 }
 
