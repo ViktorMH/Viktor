@@ -94,6 +94,17 @@ final class ContratoLectorCampo {
                     EntradaAlimentacion.ID_MESA_M + INTEGER_TYPE + COMMA_SEP +
                     EntradaAlimentacion.NOMBRE_MESA + VARCHAR_TYPE + _50 + NOT_NULL + UNIQUE + CIERRE;
 
+    static final String SQL_CREATE_TABLA_PEDIDO =
+            CREATE_TABLE + EntradaAlimentacion.TABLA_PEDIDO + APERT +
+                    EntradaAlimentacion.ID_PEDIDO + INTEGER_TYPE + COMMA_SEP +
+                    EntradaAlimentacion.ID_CALDO_P + INTEGER_TYPE + COMMA_SEP +
+                    EntradaAlimentacion.CANT_CALDO + INTEGER_TYPE + COMMA_SEP +
+                    EntradaAlimentacion.ID_SEGUNDO_P + INTEGER_TYPE + COMMA_SEP +
+                    EntradaAlimentacion.CANT_SEGUNDO + INTEGER_TYPE + COMMA_SEP +
+                    EntradaAlimentacion.ID_COMBINADO_P + INTEGER_TYPE + COMMA_SEP +
+                    EntradaAlimentacion.ID_MESA_P + INTEGER_TYPE + COMMA_SEP +
+                    EntradaAlimentacion.FECHA_PEDIDO + TIMESTAMP_TYPE + NOT_NULL + CIERRE;
+
     /** INSERCION DE DATOS A LA TABLA INSUMO*/
     static final String SQL_INSERT_DATA_TABLA_MENU="INSERT INTO menu (idinsumo,nommenu) VALUES " +
             "(1,'Trigo')," + //1
@@ -129,6 +140,19 @@ final class ContratoLectorCampo {
             "(30,'Hígado frito')," +
             "(31,'Pescado frito')," +
             "(32,'Pejerrey frito');";
+
+    static final String SQL_DROP_TABLA_MENU =
+            DROP_TABLE_IF_EXISTS + EntradaAlimentacion.TABLA_MENU;
+    static final String SQL_DROP_TABLA_CALDO =
+            DROP_TABLE_IF_EXISTS + EntradaAlimentacion.TABLA_CALDO;
+    static final String SQL_DROP_TABLA_SEGUNDO =
+            DROP_TABLE_IF_EXISTS + EntradaAlimentacion.TABLA_SEGUNDO;
+    static final String SQL_DROP_TABLA_COMBINADO =
+            DROP_TABLE_IF_EXISTS + EntradaAlimentacion.TABLA_COMBINADO;
+    static final String SQL_DROP_TABLA_MESA =
+            DROP_TABLE_IF_EXISTS + EntradaAlimentacion.TABLA_MESA;
+    static final String SQL_DROP_TABLA_PEDIDO =
+            DROP_TABLE_IF_EXISTS + EntradaAlimentacion.TABLA_PEDIDO;
 
 }
 
