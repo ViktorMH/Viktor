@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/6. Viktor.iml" filepath="$PROJECT_DIR$/6. Viktor.iml" />
+      <module fileurl="file://D:\PROYECTOS\ProyectosAndroid\Viktor\6. Viktor.iml" filepath="D:\PROYECTOS\ProyectosAndroid\Viktor\6. Viktor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Viktor.iml" filepath="$PROJECT_DIR$/.idea/Viktor.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\PROYECTOS\ProyectosAndroid\Viktor\app\app.iml" filepath="D:\PROYECTOS\ProyectosAndroid\Viktor\app\app.iml" />
     </modules>
   </component>
 </project>

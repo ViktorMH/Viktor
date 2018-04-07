@@ -16,7 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CaldoActivity"></activity>
+        <activity
+            android:name=".CaldoActivity"
+            android:label="Caldo" />
+        <activity
+            android:name=".SegundoActivity"
+            android:label="Segundo" />
+        <activity
+            android:name=".CombinadoActivity"
+            android:label="Combinado"></activity>
+        <activity android:name=".PedidoActivity"></activity>
     </application>
 
 </manifest>

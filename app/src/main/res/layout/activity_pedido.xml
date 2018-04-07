@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.usuario.comidaapp.PedidoActivity">
+
+    <Button
+        android:id="@+id/btn_inicio"
+        android:layout_width="303dp"
+        android:layout_height="62dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Inicio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="390dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_Guardar"
+        android:layout_width="135dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/holo_green_dark"
+        android:text="Guardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="326dp" />
+
+    <Button
+        android:id="@+id/btn_limpiar"
+        android:layout_width="138dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/holo_red_light"
+        android:text="Limpiar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.852" />
+
+    <TextView
+        android:id="@+id/tv_mesa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mesa o llevar"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="273dp" />
+
+    <TextView
+        android:id="@+id/tv_mesa3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Caldos"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="208dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <TextView
+        android:id="@+id/tv_segundo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Segundo(s)"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <TextView
+        android:id="@+id/tv_combin2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Combinado"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="174dp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="133dp"
+        android:layout_height="44dp"
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="272dp" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="304dp"
+        android:layout_height="49dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="214dp" />
+
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="304dp"
+        android:layout_height="49dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="112dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="106dp"
+        android:layout_height="53dp"
+        android:ems="10"
+        android:hint="Cantidad"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="48dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="79dp"
+        android:layout_height="53dp"
+        android:ems="10"
+        android:hint="cantidad"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="208dp"
+        tools:layout_editor_absoluteY="48dp" />
+
+</android.support.constraint.ConstraintLayout>

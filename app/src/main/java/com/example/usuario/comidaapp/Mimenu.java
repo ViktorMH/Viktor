@@ -4,11 +4,11 @@ package com.example.usuario.comidaapp;
  * Created by usuario on 06/04/2018.
  */
 
-public class menu {
+public class Mimenu {
     Integer idmenu;
     String nommenu;
 
-    public menu(Integer idmenu, String nommenu) {
+    public Mimenu() {
         this.idmenu = idmenu;
         this.nommenu = nommenu;
     }

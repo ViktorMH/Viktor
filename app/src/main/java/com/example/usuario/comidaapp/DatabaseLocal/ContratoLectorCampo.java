@@ -106,7 +106,7 @@ final class ContratoLectorCampo {
                     EntradaAlimentacion.FECHA_PEDIDO + TIMESTAMP_TYPE + NOT_NULL + CIERRE;
 
     /** INSERCION DE DATOS A LA TABLA INSUMO*/
-    static final String SQL_INSERT_DATA_TABLA_MENU="INSERT INTO menu (idinsumo,nommenu) VALUES " +
+    static final String SQL_INSERT_DATA_TABLA_MENU="INSERT INTO Mimenu (idinsumo,nommenu) VALUES " +
             "(1,'Trigo')," + //1
             "(2,'Chaquepa')," + //2
             "(4,'Sémola')," + //4
