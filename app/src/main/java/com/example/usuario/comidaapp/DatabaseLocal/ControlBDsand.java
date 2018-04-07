@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.usuario.comidaapp.Mimenu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by usuario on 06/04/2018.
@@ -91,19 +92,20 @@ public class ControlBDsand {
         cursor.close();
         return id_pedido;
     }
-    public ArrayList<Mimenu> listarCaldos(){
-        ArrayList<Mimenu> listacaldo=new ArrayList<>();
+    public List<Mimenu> listarCaldos(){
+        List<Mimenu> listacaldo=new ArrayList<>();
         Cursor cursor=db.rawQuery("select nommenu from menu where idmenu>=1 and idmenu<=6 ", null);
-        while (cursor.moveToNext()){
-            Mimenu mimenu=new Mimenu();
-            mimenu.setIdmenu(cursor.getInt(0));
-            mimenu.setNommenu(cursor.getString(1));
-            listacaldo.add(mimenu);
+        if (cursor.moveToFirst()){
+            do{
+                Mimenu mimenu=new Mimenu();
+                mimenu.setNommenu(cursor.getString(0));
+                listacaldo.add(mimenu);
+            }while (cursor.moveToNext());
         }
         cursor.close();
         return listacaldo;
     }
-    public ArrayList<String> obtenerListaCaldos(ArrayList<Mimenu> arrayList){
+    public ArrayList<String> obtenerListaCaldos(List<Mimenu> arrayList){
         ArrayList<String> listacaldos;
         listacaldos=new ArrayList<String>();
         listacaldos.add("Seleccione");
