@@ -25,7 +25,7 @@ public class ControlBDsand {
     }
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
-        private static String DATABASE_NAME = "com1.db";
+        private static String DATABASE_NAME = "com3.db";
         private static int VERSION = 1;
 
         DatabaseHelper(Context context) {
@@ -93,13 +93,14 @@ public class ControlBDsand {
     }
     public ArrayList<Mimenu> listarCaldos(){
         ArrayList<Mimenu> listacaldo=new ArrayList<>();
-        Mimenu mimenu =null;
         Cursor cursor=db.rawQuery("select nommenu from menu where idmenu>=1 and idmenu<=6 ", null);
         while (cursor.moveToNext()){
-            mimenu =new Mimenu();
-            mimenu.setIdmenu(cursor.getInt(1));
+            Mimenu mimenu=new Mimenu();
+            mimenu.setIdmenu(cursor.getInt(0));
+            mimenu.setNommenu(cursor.getString(1));
             listacaldo.add(mimenu);
         }
+        cursor.close();
         return listacaldo;
     }
     public ArrayList<String> obtenerListaCaldos(ArrayList<Mimenu> arrayList){

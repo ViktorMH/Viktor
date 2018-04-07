@@ -8,9 +8,12 @@ public class Mimenu {
     Integer idmenu;
     String nommenu;
 
-    public Mimenu() {
+    public Mimenu(String string) {
         this.idmenu = idmenu;
         this.nommenu = nommenu;
+    }
+    public Mimenu(){
+
     }
 
     public Integer getIdmenu() {
