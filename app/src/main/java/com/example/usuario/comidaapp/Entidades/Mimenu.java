@@ -1,4 +1,4 @@
-package com.example.usuario.comidaapp;
+package com.example.usuario.comidaapp.Entidades;
 
 /**
  * Created by usuario on 06/04/2018.

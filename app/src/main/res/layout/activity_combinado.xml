@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="0.01" />
 
     <Spinner
-        android:id="@+id/sp_nom_segundo"
+        android:id="@+id/sp_nom_combinado"
         android:layout_width="304dp"
         android:layout_height="55dp"
         android:layout_marginBottom="8dp"
@@ -72,7 +72,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btn_guardar"
+        android:id="@+id/btn_guardar_c"
         android:layout_width="120dp"
         android:layout_height="74dp"
         android:layout_marginBottom="8dp"

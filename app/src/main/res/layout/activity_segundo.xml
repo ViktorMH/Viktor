@@ -72,7 +72,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btn_guardar"
+        android:id="@+id/btn_guardar_s"
         android:layout_width="120dp"
         android:layout_height="74dp"
         android:layout_marginBottom="8dp"

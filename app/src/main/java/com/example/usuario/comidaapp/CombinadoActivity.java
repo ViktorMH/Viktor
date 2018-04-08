@@ -8,24 +8,59 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.usuario.comidaapp.DatabaseLocal.ControlBDsand;
+import com.example.usuario.comidaapp.Entidades.Mimenu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CombinadoActivity extends AppCompatActivity {
     Spinner spinner;
     List<Mimenu> listadocombinados;
     ArrayList<String> listafinalcombinados;
     EditText cant_combinados;
-    Button segundo, inicio, caldo,limpiar;
+    Button segundo, inicio, caldo,limpiar,guardar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_combinado);
-        spinner= findViewById(R.id.sp_nom_caldo);
+
+        final ControlBDsand DBhelper=new ControlBDsand(this);
+
+        spinner= findViewById(R.id.sp_nom_combinado);
         cant_combinados=findViewById(R.id.et_cant_combinados);
+
+        guardar=findViewById(R.id.btn_guardar_c);
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id_combinado;
+                String canti_combinado;
+                double cantidad;
+                DBhelper.abrir();
+                long id_tabla_combinado=DBhelper.consultIDTablaCombinado();
+
+                canti_combinado =  cant_combinados.getText().toString() ;
+                if (Objects.equals(canti_combinado, "")){
+                    cantidad=0.0;
+                }else{
+                    cantidad=Double.parseDouble(canti_combinado);
+                }
+                id_combinado=DBhelper.buscarId((String) spinner.getSelectedItem());
+                if (id_combinado==0){
+                    Toast.makeText(CombinadoActivity.this, "Seleccione un combinado", Toast.LENGTH_SHORT).show();
+                }else{
+                    DBhelper.guardarCombinado(id_combinado,cantidad,id_tabla_combinado);
+                    Toast.makeText(CombinadoActivity.this, "Guardado exitosamente", Toast.LENGTH_SHORT).show();
+                }
+                DBhelper.cerrar();
+
+            }
+        });
+
         limpiar=findViewById(R.id.btn_limpiar);
         limpiar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +97,7 @@ public class CombinadoActivity extends AppCompatActivity {
             }
         });
 
-        ControlBDsand DBhelper=new ControlBDsand(this);
+
         DBhelper.abrir();
         listadocombinados=DBhelper.listarCombinados();
         listafinalcombinados=DBhelper.obtenerListacombinados(listadocombinados);
