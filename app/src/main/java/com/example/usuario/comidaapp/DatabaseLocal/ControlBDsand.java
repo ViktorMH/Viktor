@@ -1,5 +1,6 @@
 package com.example.usuario.comidaapp.DatabaseLocal;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -136,6 +137,37 @@ public class ControlBDsand {
             listasegundos.add(arrayList.get(i).getNommenu());
         }
         return listasegundos;
+    }
+
+    public List<Mimenu> listarCombinados(){
+        List<Mimenu> listacombinado=new ArrayList<>();
+        Cursor cursor=db.rawQuery("select nommenu from menu where idmenu>=7 and idmenu<=15 ", null);
+        if (cursor.moveToFirst()){
+            do{
+                Mimenu mimenu=new Mimenu();
+                mimenu.setNommenu(cursor.getString(0));
+                listacombinado.add(mimenu);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return listacombinado;
+    }
+    public ArrayList<String> obtenerListacombinados(List<Mimenu> arrayList){
+        ArrayList<String> listacombinados;
+        listacombinados=new ArrayList<String>();
+        listacombinados.add("Seleccione");
+        for (int i=0;i<arrayList.size();i++){
+            listacombinados.add(arrayList.get(i).getNommenu());
+        }
+        return listacombinados;
+    }
+    public void guardarCaldo(String caldo,int cantidad){
+        ContentValues contentValues = new ContentValues();
+    }
+    public int buscarId(String nombre){
+
+
+        return 0;
     }
 
 }

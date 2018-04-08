@@ -19,13 +19,22 @@ public class SegundoActivity extends AppCompatActivity {
     List<Mimenu> listadosegundos;
     ArrayList<String> listafinalsegundos;
     EditText cant_segundos;
-    Button caldo, inicio, combinado;
+    Button caldo, inicio, combinado,limpiar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segundo);
         spinner= findViewById(R.id.sp_nom_segundo);
         cant_segundos=findViewById(R.id.et_cant_segundos);
+        limpiar=findViewById(R.id.btn_limpiar);
+        limpiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spinner.setSelection(0);
+                cant_segundos.setText("");
+            }
+        });
+
         inicio=findViewById(R.id.btn_inicio);
         inicio.setOnClickListener(new View.OnClickListener() {
             @Override

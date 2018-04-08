@@ -19,13 +19,21 @@ public class CaldoActivity extends AppCompatActivity {
     List<Mimenu> listadocaldos;
     ArrayList<String> listafinalcaldos;
     EditText cant_caldo;
-    Button segundo, inicio, combinado;
+    Button segundo, inicio, combinado,limpiar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caldo);
         spinner= findViewById(R.id.sp_nom_caldo);
         cant_caldo=findViewById(R.id.et_cant_caldo);
+        limpiar=findViewById(R.id.btn_limpiar);
+        limpiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spinner.setSelection(0);
+                cant_caldo.setText("");
+            }
+        });
         segundo=findViewById(R.id.btn_segundos);
         segundo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +66,7 @@ public class CaldoActivity extends AppCompatActivity {
         DBhelper.cerrar();
         ArrayAdapter<String> adapter= new ArrayAdapter<>(this,R.layout.spinner_formato,listafinalcaldos);
         spinner.setAdapter(adapter);
+
     }
 
 }
