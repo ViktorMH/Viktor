@@ -9,18 +9,63 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button configuracion;
+    Button caldo_menu,segundo,combinado,pedido,menu_del_dia,reportes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        configuracion=(Button)findViewById(R.id.btn_cofiguracion);
-        configuracion.setOnClickListener(new View.OnClickListener() {
+        caldo_menu=findViewById(R.id.btn_caldo_menu);
+        caldo_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent configuracion=new Intent(MainActivity.this,CaldoActivity.class);
-                startActivity(configuracion);
+                Intent caldo_menu=new Intent(MainActivity.this,CaldoActivity.class);
+                startActivity(caldo_menu);
+            }
+        });
+
+        segundo=findViewById(R.id.btn_segundo_menu);
+        segundo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent segundo=new Intent(MainActivity.this,SegundoActivity.class);
+                startActivity(segundo);
+            }
+        });
+
+        combinado=findViewById(R.id.btn_combinado_menu);
+        combinado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent combinado=new Intent(MainActivity.this,CombinadoActivity.class);
+                startActivity(combinado);
+            }
+        });
+
+        pedido=findViewById(R.id.btn_pedido_menu);
+        pedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pedido=new Intent(MainActivity.this,PedidoActivity.class);
+                startActivity(pedido);
+            }
+        });
+
+        menu_del_dia=findViewById(R.id.btn_menu_del_dia);
+        menu_del_dia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent menu_del_dia=new Intent(MainActivity.this,MenuDiaActivity.class);
+                startActivity(menu_del_dia);
+            }
+        });
+
+        reportes=findViewById(R.id.btn_reportes);
+        reportes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent reportes=new Intent(MainActivity.this,ReportesActivity.class);
+                startActivity(reportes);
             }
         });
     }

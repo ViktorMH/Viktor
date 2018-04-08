@@ -115,4 +115,27 @@ public class ControlBDsand {
         return listacaldos;
     }
 
+    public List<Mimenu> listarSegundos(){
+        List<Mimenu> listasegundo=new ArrayList<>();
+        Cursor cursor=db.rawQuery("select nommenu from menu where idmenu>=16 and idmenu<=32 ", null);
+        if (cursor.moveToFirst()){
+            do{
+                Mimenu mimenu=new Mimenu();
+                mimenu.setNommenu(cursor.getString(0));
+                listasegundo.add(mimenu);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return listasegundo;
+    }
+    public ArrayList<String> obtenerListaSegundos(List<Mimenu> arrayList){
+        ArrayList<String> listasegundos;
+        listasegundos=new ArrayList<String>();
+        listasegundos.add("Seleccione");
+        for (int i=0;i<arrayList.size();i++){
+            listasegundos.add(arrayList.get(i).getNommenu());
+        }
+        return listasegundos;
+    }
+
 }

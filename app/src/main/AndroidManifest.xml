@@ -24,8 +24,15 @@
             android:label="Segundo" />
         <activity
             android:name=".CombinadoActivity"
-            android:label="Combinado"></activity>
-        <activity android:name=".PedidoActivity"></activity>
+            android:label="Combinado" />
+        <activity android:name=".PedidoActivity"
+            android:label="Pedido" />
+        <activity android:name=".MenuDiaActivity"
+            android:label="Menu del dìa" />
+        <activity android:name=".ReportesActivity"
+            android:label="Reportes" >
+
+        </activity>
     </application>
 
 </manifest>
