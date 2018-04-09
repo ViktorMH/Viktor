@@ -41,6 +41,11 @@ final class ContratoLectorCampo {
         private static final String ID_MESA_M="idmesa";
         private static final String NOMBRE_MESA="nommesa";
 
+        /**TABLA CANTIDAD*/
+        private static final String TABLA_CANTIDAD="cantidad";
+        private static final String ID_CANTIDAD="idcantidad";
+        private static final String NOMBRE_CANTIDAD="nomcantidad";
+
         /**TABLA PEDIDO*/
         private static final String TABLA_PEDIDO="pedido";
         private static final String ID_PEDIDO="idpedido";
@@ -52,8 +57,10 @@ final class ContratoLectorCampo {
         private static final String ID_MESA_P="idmesa";
         private static final String FECHA_PEDIDO="fecha_pedido";
 
-        /**VISTA SEGUNDOS DIA*/
+        /**VISTAS**/
         private static final String SEGUNDOS_DIA_VIEW="segundo_dia_view";
+        private static final String COMBINADOS_DIA_VIEW="combinado_dia_view";
+        private static final String CALDO_DIA_VIEW="caldo_dia_view";
     }
     /**Creacion de los códigos SQL*/
     private static final String VARCHAR_TYPE = " VARCHAR";
@@ -102,6 +109,11 @@ final class ContratoLectorCampo {
             CREATE_TABLE + EntradaAlimentacion.TABLA_MESA + APERT +
                     EntradaAlimentacion.ID_MESA_M + INTEGER_TYPE + COMMA_SEP +
                     EntradaAlimentacion.NOMBRE_MESA + VARCHAR_TYPE + _50 + NOT_NULL + UNIQUE + CIERRE;
+
+    static final String SQL_CREATE_TABLA_CANTIDAD =
+            CREATE_TABLE + EntradaAlimentacion.TABLA_CANTIDAD + APERT +
+                    EntradaAlimentacion.ID_CANTIDAD + INTEGER_TYPE + COMMA_SEP +
+                    EntradaAlimentacion.NOMBRE_CANTIDAD + VARCHAR_TYPE + _50 + NOT_NULL + UNIQUE + CIERRE;
 
     static final String SQL_CREATE_TABLA_PEDIDO =
             CREATE_TABLE + EntradaAlimentacion.TABLA_PEDIDO + APERT +
@@ -163,11 +175,40 @@ final class ContratoLectorCampo {
             "(9,'8')," +
             "(10,'9');";
 
+    /** INSERCION DE DATOS A LA TABLA CANTIDAD*/
+    static final String SQL_INSERT_DATA_TABLA_CANTIDAD="INSERT INTO cantidad (idcantidad,nomcantidad) VALUES " +
+            "(1,'1')," +
+            "(2,'2')," +
+            "(3,'3')," +
+            "(4,'4')," +
+            "(5,'5')," +
+            "(6,'6')," +
+            "(7,'7')," +
+            "(8,'8')," +
+            "(9,'9')," +
+            "(10,'10');";
+
     /**CREACION DE VISTAS**/
     static final String SQL_CREATE_VIEW_SEGUNDO_DIA="CREATE VIEW segundo_dia_view AS \n" +
             "SELECT nommenu,stock_segundo,fecha_segundo\n" +
             "FROM segundo INNER JOIN menu ON\n" +
             "segundo.idmenu=menu.idmenu ;";
+
+    static final String SQL_CREATE_VIEW_COMBINADO_DIA="CREATE VIEW combinado_dia_view AS \n" +
+            "SELECT nommenu,stock_combinado,fecha_combinado\n" +
+            "FROM combinado INNER JOIN menu ON\n" +
+            "combinado.idmenu=menu.idmenu ;";
+
+    static final String SQL_CREATE_VIEW_CALDO_DIA="CREATE VIEW caldo_dia_view AS \n" +
+            "SELECT nommenu,stock_caldo,fecha_caldo\n" +
+            "FROM caldo INNER JOIN menu ON\n" +
+            "caldo.idmenu=menu.idmenu ;";
+
+    static final String SQL_CREATE_VIEW_REPORTE_DIA="CREATE VIEW reporte_dia_view AS \n" +
+            "SELECT nommenu,cant_caldo,cant_segundo\n" +
+            "FROM pedido INNER JOIN caldo_dia_view ON\n" +
+            "pedido.idcaldo=caldo_dia_view.idmenu INNER JOIN" +
+            ";";
 
     static final String SQL_DROP_TABLA_MENU =
             DROP_TABLE_IF_EXISTS + EntradaAlimentacion.TABLA_MENU;
@@ -179,10 +220,16 @@ final class ContratoLectorCampo {
             DROP_TABLE_IF_EXISTS + EntradaAlimentacion.TABLA_COMBINADO;
     static final String SQL_DROP_TABLA_MESA =
             DROP_TABLE_IF_EXISTS + EntradaAlimentacion.TABLA_MESA;
+    static final String SQL_DROP_TABLA_CANTIDAD =
+            DROP_TABLE_IF_EXISTS + EntradaAlimentacion.TABLA_CANTIDAD;
     static final String SQL_DROP_TABLA_PEDIDO =
             DROP_TABLE_IF_EXISTS + EntradaAlimentacion.TABLA_PEDIDO;
     static final String SQL_DROP_VIEW_SEGUNDOS_DIA =
             DROP_TABLE_IF_EXISTS + EntradaAlimentacion.SEGUNDOS_DIA_VIEW;
+    static final String SQL_DROP_VIEW_COMBINADOS_DIA =
+            DROP_TABLE_IF_EXISTS + EntradaAlimentacion.COMBINADOS_DIA_VIEW;
+    static final String SQL_DROP_VIEW_CALDO_DIA =
+            DROP_TABLE_IF_EXISTS + EntradaAlimentacion.CALDO_DIA_VIEW;
 
 }
 

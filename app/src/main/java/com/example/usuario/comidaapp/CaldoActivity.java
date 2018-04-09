@@ -54,6 +54,8 @@ public class CaldoActivity extends AppCompatActivity {
                 }else{
                     DBhelper.guardarCaldo(id_caldo,cantidad,id_tabla_caldo);
                     Toast.makeText(CaldoActivity.this, "Guardado exitosamente", Toast.LENGTH_SHORT).show();
+                    spinner.setSelection(0);
+                    cant_caldo.setText("");
                 }
                 DBhelper.cerrar();
 

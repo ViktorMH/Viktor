@@ -5,15 +5,15 @@ package com.example.usuario.comidaapp.Entidades;
  */
 
 public class Segundo {
-    String nombre_segundo;
-    String fecha_pedido;
+    private String nombre_segundo;
+    private String fecha_pedido_segundo;
     public Segundo(){
 
     }
 
     public Segundo(String nombre_segundo, String fecha_pedido) {
         this.nombre_segundo = nombre_segundo;
-        this.fecha_pedido = fecha_pedido;
+        this.fecha_pedido_segundo = fecha_pedido;
     }
 
     public String getNombre_segundo() {
@@ -25,10 +25,10 @@ public class Segundo {
     }
 
     public String getFecha_pedido() {
-        return fecha_pedido;
+        return fecha_pedido_segundo;
     }
 
     public void setFecha_pedido(String fecha_pedido) {
-        this.fecha_pedido = fecha_pedido;
+        this.fecha_pedido_segundo = fecha_pedido;
     }
 }

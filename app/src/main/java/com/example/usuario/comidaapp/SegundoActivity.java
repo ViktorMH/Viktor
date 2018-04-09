@@ -54,6 +54,8 @@ public class SegundoActivity extends AppCompatActivity {
                 }else{
                     DBhelper.guardarSegundo(id_segundo,cantidad,id_tabla_segundo);
                     Toast.makeText(SegundoActivity.this, "Guardado exitosamente", Toast.LENGTH_SHORT).show();
+                    spinner.setSelection(0);
+                    cant_segundos.setText("");
                 }
                 DBhelper.cerrar();
 

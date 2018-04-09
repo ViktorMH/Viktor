@@ -55,6 +55,8 @@ public class CombinadoActivity extends AppCompatActivity {
                 }else{
                     DBhelper.guardarCombinado(id_combinado,cantidad,id_tabla_combinado);
                     Toast.makeText(CombinadoActivity.this, "Guardado exitosamente", Toast.LENGTH_SHORT).show();
+                    spinner.setSelection(0);
+                    cant_combinados.setText("");
                 }
                 DBhelper.cerrar();
 
