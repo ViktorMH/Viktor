@@ -31,6 +31,9 @@ public class CaldoActivity extends AppCompatActivity {
         final ControlBDsand DBhelper=new ControlBDsand(this);
 
         spinner= findViewById(R.id.sp_nom_caldo);
+        spinner.setFocusable(true);
+        spinner.setFocusableInTouchMode(true);
+        spinner.requestFocus();
         cant_caldo=findViewById(R.id.et_cant_caldo);
         guardar=findViewById(R.id.btn_guardar_c);
         guardar.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +59,8 @@ public class CaldoActivity extends AppCompatActivity {
                     Toast.makeText(CaldoActivity.this, "Guardado exitosamente", Toast.LENGTH_SHORT).show();
                     spinner.setSelection(0);
                     cant_caldo.setText("");
+                    Intent segundo=new Intent(CaldoActivity.this,SegundoActivity.class);
+                    startActivity(segundo);
                 }
                 DBhelper.cerrar();
 
@@ -67,6 +72,7 @@ public class CaldoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 spinner.setSelection(0);
                 cant_caldo.setText("");
+                Toast.makeText(CaldoActivity.this, "Se realizó la limpieza", Toast.LENGTH_SHORT).show();
             }
         });
         segundo=findViewById(R.id.btn_segundos);

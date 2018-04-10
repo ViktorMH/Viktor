@@ -12,6 +12,7 @@ import com.example.usuario.comidaapp.Entidades.Cantidad;
 import com.example.usuario.comidaapp.Entidades.Combinado;
 import com.example.usuario.comidaapp.Entidades.MenuDia;
 import com.example.usuario.comidaapp.Entidades.Mesa;
+import com.example.usuario.comidaapp.Entidades.ReporteDia;
 import com.example.usuario.comidaapp.Entidades.Segundo;
 import com.example.usuario.comidaapp.Entidades.Mimenu;
 
@@ -36,7 +37,7 @@ public class ControlBDsand {
     }
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
-        private static String DATABASE_NAME = "com9.db";
+        private static String DATABASE_NAME = "com16.db";
         private static int VERSION = 1;
 
         DatabaseHelper(Context context) {
@@ -57,6 +58,9 @@ public class ControlBDsand {
                 db.execSQL(ContratoLectorCampo.SQL_CREATE_VIEW_SEGUNDO_DIA);
                 db.execSQL(ContratoLectorCampo.SQL_CREATE_VIEW_COMBINADO_DIA);
                 db.execSQL(ContratoLectorCampo.SQL_CREATE_VIEW_CALDO_DIA);
+                db.execSQL(ContratoLectorCampo.SQL_CREATE_VIEW_REPORTE_SEGUNDO_DIA);
+                db.execSQL(ContratoLectorCampo.SQL_CREATE_VIEW_REPORTE_CALDO_DIA);
+                db.execSQL(ContratoLectorCampo.SQL_CREATE_VIEW_REPORTE_COMBINADO_DIA);
 
                 db.execSQL(ContratoLectorCampo.SQL_INSERT_DATA_TABLA_MENU);
                 db.execSQL(ContratoLectorCampo.SQL_INSERT_DATA_TABLA_MESA);
@@ -79,6 +83,9 @@ public class ControlBDsand {
                 db.execSQL(ContratoLectorCampo.SQL_DROP_VIEW_SEGUNDOS_DIA);
                 db.execSQL(ContratoLectorCampo.SQL_DROP_VIEW_COMBINADOS_DIA);
                 db.execSQL(ContratoLectorCampo.SQL_DROP_VIEW_CALDO_DIA);
+                db.execSQL(ContratoLectorCampo.SQL_DROP_VIEW_REPORTE_SEGUNDO_DIA);
+                db.execSQL(ContratoLectorCampo.SQL_DROP_VIEW_REPORTE_COMBINADO_DIA);
+                db.execSQL(ContratoLectorCampo.SQL_DROP_VIEW_REPORTE_CALDO_DIA);
                 db.execSQL(ContratoLectorCampo.SQL_DROP_TABLA_PEDIDO);
                 db.execSQL(ContratoLectorCampo.SQL_DROP_TABLA_CANTIDAD);
 
@@ -99,7 +106,7 @@ public class ControlBDsand {
 
     public List<Mimenu> listarCaldos(){
         List<Mimenu> listacaldo=new ArrayList<>();
-        Cursor cursor=db.rawQuery("select nommenu from menu where idmenu>=1 and idmenu<=6 ", null);
+        Cursor cursor=db.rawQuery("select nommenu from menu where idmenu>=1 and idmenu<=5 ", null);
         if (cursor.moveToFirst()){
             do{
                 Mimenu mimenu=new Mimenu();
@@ -112,7 +119,7 @@ public class ControlBDsand {
     }
     public ArrayList<String> obtenerListaCaldos(List<Mimenu> arrayList){
         ArrayList<String> listacaldos;
-        listacaldos=new ArrayList<String>();
+        listacaldos=new ArrayList<>();
         listacaldos.add("Seleccione");
         for (int i=0;i<arrayList.size();i++){
             listacaldos.add(arrayList.get(i).getNommenu());
@@ -122,7 +129,7 @@ public class ControlBDsand {
 
     public List<Mimenu> listarSegundos(){
         List<Mimenu> listasegundo=new ArrayList<>();
-        Cursor cursor=db.rawQuery("select nommenu from menu where idmenu>=16 and idmenu<=32 ", null);
+        Cursor cursor=db.rawQuery("select nommenu from menu where idmenu>=15 and idmenu<=32 ", null);
         if (cursor.moveToFirst()){
             do{
                 Mimenu mimenu=new Mimenu();
@@ -135,7 +142,7 @@ public class ControlBDsand {
     }
     public ArrayList<String> obtenerListaSegundos(List<Mimenu> arrayList){
         ArrayList<String> listasegundos;
-        listasegundos=new ArrayList<String>();
+        listasegundos=new ArrayList<>();
         listasegundos.add("Seleccione");
         for (int i=0;i<arrayList.size();i++){
             listasegundos.add(arrayList.get(i).getNommenu());
@@ -145,7 +152,7 @@ public class ControlBDsand {
 
     public List<Mimenu> listarCombinados(){
         List<Mimenu> listacombinado=new ArrayList<>();
-        Cursor cursor=db.rawQuery("select nommenu from menu where idmenu>=7 and idmenu<=15 ", null);
+        Cursor cursor=db.rawQuery("select nommenu from menu where idmenu>=6 and idmenu<=14 ", null);
         if (cursor.moveToFirst()){
             do{
                 Mimenu mimenu=new Mimenu();
@@ -158,7 +165,7 @@ public class ControlBDsand {
     }
     public ArrayList<String> obtenerListacombinados(List<Mimenu> arrayList){
         ArrayList<String> listacombinados;
-        listacombinados=new ArrayList<String>();
+        listacombinados=new ArrayList<>();
         listacombinados.add("Seleccione");
         for (int i=0;i<arrayList.size();i++){
             listacombinados.add(arrayList.get(i).getNommenu());
@@ -167,7 +174,7 @@ public class ControlBDsand {
     }
     public List<Cantidad> listarCantidad(){
         List<Cantidad> listacantidad=new ArrayList<>();
-        Cursor cursor=db.rawQuery("select nomcantidad from cantidad where idcantidad>=1 and idcantidad<=10 ", null);
+        Cursor cursor=db.rawQuery("select nomcantidad from cantidad where idcantidad>=1 and idcantidad<=6 ", null);
         if (cursor.moveToFirst()){
             do{
                 Cantidad cantidad=new Cantidad();
@@ -180,7 +187,7 @@ public class ControlBDsand {
     }
     public ArrayList<String> obtenerListaCantidad(List<Cantidad> arrayList){
         ArrayList<String> listacantidad;
-        listacantidad=new ArrayList<String>();
+        listacantidad=new ArrayList<>();
         listacantidad.add("0");
         for (int i=0;i<arrayList.size();i++){
             listacantidad.add(arrayList.get(i).getNom_cantidad());
@@ -202,7 +209,7 @@ public class ControlBDsand {
     }
     public ArrayList<String> obtenerListaMesa(List<Mesa> arrayList){
         ArrayList<String> listamesa;
-        listamesa=new ArrayList<String>();
+        listamesa=new ArrayList<>();
         listamesa.add("#");
         for (int i=0;i<arrayList.size();i++){
             listamesa.add(arrayList.get(i).getNom_mesa());
@@ -233,7 +240,7 @@ public class ControlBDsand {
         contentValues.put("fecha_combinado",getDateTime());
         db.insert("combinado",null,contentValues);
     }
-    public void guardarPedido(long id_tab_pedido, int id_caldo,double cantidad_caldo,int id_segundo,double cantidad_segundo,int id_combinado,int id_mesa){
+    public void guardarPedido(long id_tab_pedido, int id_caldo,double cantidad_caldo,int id_segundo,double cantidad_segundo,int id_combinado,double cantidad_combinado,int id_mesa){
         ContentValues contentValues = new ContentValues();
         contentValues.put("idpedido",id_tab_pedido);
         contentValues.put("idcaldo",id_caldo);
@@ -241,6 +248,7 @@ public class ControlBDsand {
         contentValues.put("idsegundo",id_segundo);
         contentValues.put("cant_segundo",cantidad_segundo);
         contentValues.put("idcombinado",id_combinado);
+        contentValues.put("cant_combinado",cantidad_combinado);
         contentValues.put("idmesa",id_mesa);
         contentValues.put("fecha_pedido",getDateTime());
         db.insert("pedido",null,contentValues);
@@ -457,20 +465,17 @@ public class ControlBDsand {
                 caldo.setIdmenu(cursor.getInt(0));
                 listadocaldo.add(caldo);
             }while (cursor.moveToNext());
+        }else{
+            Caldo caldo=new Caldo();
+            caldo.setIdmenu(0);
+            listadocaldo.add(caldo);
+            return listadocaldo;
         }
         cursor.close();
         return  listadocaldo;
     }
-    public ArrayList<String> obtenerListaCaldosDia(List<Caldo> arrayList){
-        ArrayList<String> listacaldosdia;
-        listacaldosdia=new ArrayList<>();
-        listacaldosdia.add("#");
-        for (int i=0;i<arrayList.size();i++){
-            listacaldosdia.add(String.valueOf(arrayList.get(i).getIdmenu()));
-        }
-        return listacaldosdia;
-    }
-    public List<MenuDia> listarMenuDia(){
+
+    public List<MenuDia> listarMenuCaldoDia() {
         Calendar calendar = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ROOT);
         String fecha_final;
@@ -493,43 +498,97 @@ public class ControlBDsand {
             fecha_inicial = df.format(calendar.getTime());
         }
 
-        List<MenuDia> listadomenudia=new ArrayList<>();
-        Cursor cursorcaldo = db.rawQuery("SELECT nommenu,stock_caldo,fecha_caldo FROM caldo_dia_view WHERE fecha_caldo >='"+fecha_inicial+"'"+" AND fecha_caldo < '"+fecha_final+"'",null);
-        Cursor cursorsegundo = db.rawQuery("SELECT nommenu,stock_segundo,fecha_segundo FROM segundo_dia_view WHERE fecha_segundo >='"+fecha_inicial+"'"+" AND fecha_segundo < '"+fecha_final+"'",null);
-        Cursor cursorcombinado = db.rawQuery("SELECT nommenu,stock_combinado,fecha_combinado FROM combinado_dia_view WHERE fecha_combinado >='"+fecha_inicial+"'"+" AND fecha_combinado < '"+fecha_final+"'",null);
+        List<MenuDia> listadomenucaldodia = new ArrayList<>();
+        Cursor cursorcaldo = db.rawQuery("SELECT nommenu,stock_caldo,fecha_caldo FROM caldo_dia_view WHERE fecha_caldo >='" + fecha_inicial + "'" + " AND fecha_caldo < '" + fecha_final + "'", null);
 
-        if (cursorcaldo.moveToFirst()){
-            do{
-                MenuDia menucaldoDia=new MenuDia();
-                menucaldoDia.setNom_menu_dia("Caldo de "+cursorcaldo.getString(0));
-                menucaldoDia.setCant_menu_dia(cursorcaldo.getDouble(1));
+        if (cursorcaldo.moveToFirst()) {
+            do {
+                MenuDia menucaldoDia = new MenuDia();
+                menucaldoDia.setNom_menu_dia("Caldo de " + cursorcaldo.getString(0));
+                menucaldoDia.setCant_menu_dia(cursorcaldo.getInt(1));
                 menucaldoDia.setFecha_menu_dia(cursorcaldo.getString(2));
-                listadomenudia.add(menucaldoDia);
-            }while (cursorcaldo.moveToNext());
+                listadomenucaldodia.add(menucaldoDia);
+            } while (cursorcaldo.moveToNext());
         }
         cursorcaldo.close();
-        if (cursorsegundo.moveToFirst()){
-            do{
-                MenuDia menusegundoDia=new MenuDia();
-                menusegundoDia.setNom_menu_dia(cursorsegundo.getString(0));
-                menusegundoDia.setCant_menu_dia(cursorsegundo.getDouble(1));
-                menusegundoDia.setFecha_menu_dia(cursorsegundo.getString(2));
-                listadomenudia.add(menusegundoDia);
-            }while (cursorcaldo.moveToNext());
+        return listadomenucaldodia;
+    }
+
+    public List<MenuDia> listarMenuSegundoDia() {
+            Calendar calendar = Calendar.getInstance();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ROOT);
+            String fecha_final;
+            String fecha_inicial;
+
+            if (calendar.get(Calendar.HOUR_OF_DAY) < 24) {
+                fecha_final = df.format(calendar.getTime());
+
+                calendar.add(Calendar.DAY_OF_YEAR, -1);
+                calendar.set(Calendar.HOUR_OF_DAY, 24);
+                calendar.set(Calendar.MINUTE, 0);
+                calendar.set(Calendar.SECOND, 0);
+                fecha_inicial = df.format(calendar.getTime());
+            } else {
+                fecha_final = df.format(calendar.getTime());
+
+                calendar.set(Calendar.HOUR_OF_DAY, 24);
+                calendar.set(Calendar.MINUTE, 0);
+                calendar.set(Calendar.SECOND, 0);
+                fecha_inicial = df.format(calendar.getTime());
+            }
+
+            List<MenuDia> listadomenusegundodia = new ArrayList<>();
+            Cursor cursorsegundo = db.rawQuery("SELECT nommenu,stock_segundo,fecha_segundo FROM segundo_dia_view WHERE fecha_segundo >='" + fecha_inicial + "'" + " AND fecha_segundo < '" + fecha_final + "'", null);
+            if (cursorsegundo.moveToFirst()) {
+                do {
+                    MenuDia menusegundoDia = new MenuDia();
+                    menusegundoDia.setNom_menu_dia(cursorsegundo.getString(0));
+                    menusegundoDia.setCant_menu_dia(cursorsegundo.getInt(1));
+                    menusegundoDia.setFecha_menu_dia(cursorsegundo.getString(2));
+                    listadomenusegundodia.add(menusegundoDia);
+                } while (cursorsegundo.moveToNext());
+            }
+            cursorsegundo.close();
+            return listadomenusegundodia;
         }
-        cursorsegundo.close();
+
+    public List<MenuDia> listarMenuCombinadoDia(){
+                Calendar calendar = Calendar.getInstance();
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ROOT);
+                String fecha_final;
+                String fecha_inicial;
+
+                if (calendar.get(Calendar.HOUR_OF_DAY) < 24) {
+                    fecha_final = df.format(calendar.getTime());
+
+                    calendar.add(Calendar.DAY_OF_YEAR, -1);
+                    calendar.set(Calendar.HOUR_OF_DAY, 24);
+                    calendar.set(Calendar.MINUTE, 0);
+                    calendar.set(Calendar.SECOND, 0);
+                    fecha_inicial = df.format(calendar.getTime());
+                } else {
+                    fecha_final = df.format(calendar.getTime());
+
+                    calendar.set(Calendar.HOUR_OF_DAY, 24);
+                    calendar.set(Calendar.MINUTE, 0);
+                    calendar.set(Calendar.SECOND, 0);
+                    fecha_inicial = df.format(calendar.getTime());
+                }
+
+                List<MenuDia> listadomenucombinadodia=new ArrayList<>();
+        Cursor cursorcombinado = db.rawQuery("SELECT nommenu,stock_combinado,fecha_combinado FROM combinado_dia_view WHERE fecha_combinado >='"+fecha_inicial+"'"+" AND fecha_combinado < '"+fecha_final+"'",null);
         if (cursorcombinado.moveToFirst()){
             do{
                 MenuDia menucombinadoDia=new MenuDia();
                 menucombinadoDia.setNom_menu_dia(cursorcombinado.getString(0));
-                menucombinadoDia.setCant_menu_dia(cursorcombinado.getDouble(1));
+                menucombinadoDia.setCant_menu_dia(cursorcombinado.getInt(1));
                 menucombinadoDia.setFecha_menu_dia(cursorcombinado.getString(2));
-                listadomenudia.add(menucombinadoDia);
+                listadomenucombinadodia.add(menucombinadoDia);
             }while (cursorcombinado.moveToNext());
         }
         cursorcombinado.close();
 
-        return  listadomenudia;
+        return  listadomenucombinadodia;
     }
     public ArrayList<String> obtenerListaMenuDia(List<MenuDia> arrayList){
         ArrayList<String> listamenudia;
@@ -538,6 +597,128 @@ public class ControlBDsand {
             listamenudia.add(String.valueOf(arrayList.get(i).getNom_menu_dia())+" | "+ arrayList.get(i).getCant_menu_dia()+" Platos");
         }
         return listamenudia;
+    }
+    public List<ReporteDia> listarCombinadosRep () {
+        Calendar calendar = Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ROOT);
+        String fecha_final;
+        String fecha_inicial;
+
+        if (calendar.get(Calendar.HOUR_OF_DAY) < 24) {
+            fecha_final = df.format(calendar.getTime());
+
+            calendar.add(Calendar.DAY_OF_YEAR, -1);
+            calendar.set(Calendar.HOUR_OF_DAY, 24);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            fecha_inicial = df.format(calendar.getTime());
+        } else {
+            fecha_final = df.format(calendar.getTime());
+
+            calendar.set(Calendar.HOUR_OF_DAY, 24);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            fecha_inicial = df.format(calendar.getTime());
+        }
+
+        List<ReporteDia> listadocombinadorep=new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM reporte_combinado_dia_view WHERE fecha_pedido >='"+fecha_inicial+"'"+" AND fecha_pedido < '"+fecha_final+"'",null);
+
+        if (cursor.moveToFirst()){
+            do{
+                ReporteDia reporteDia=new ReporteDia();
+                reporteDia.setNom_comi(cursor.getString(0));
+                reporteDia.setCant_ven(cursor.getInt(1));
+                reporteDia.setFecha_repor(cursor.getString(2));
+                listadocombinadorep.add(reporteDia);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return listadocombinadorep;
+    }
+    public List<ReporteDia> listarSegundosRep () {
+        Calendar calendar = Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ROOT);
+        String fecha_final;
+        String fecha_inicial;
+
+        if (calendar.get(Calendar.HOUR_OF_DAY) < 24) {
+            fecha_final = df.format(calendar.getTime());
+
+            calendar.add(Calendar.DAY_OF_YEAR, -1);
+            calendar.set(Calendar.HOUR_OF_DAY, 24);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            fecha_inicial = df.format(calendar.getTime());
+        } else {
+            fecha_final = df.format(calendar.getTime());
+
+            calendar.set(Calendar.HOUR_OF_DAY, 24);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            fecha_inicial = df.format(calendar.getTime());
+        }
+
+        List<ReporteDia> listadosegundorep=new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM reporte_segundo_dia_view WHERE fecha_pedido >='"+fecha_inicial+"'"+" AND fecha_pedido < '"+fecha_final+"'",null);
+
+        if (cursor.moveToFirst()){
+            do{
+                ReporteDia reporteDia=new ReporteDia();
+                reporteDia.setNom_comi(cursor.getString(0));
+                reporteDia.setCant_ven(cursor.getInt(1));
+                reporteDia.setFecha_repor(cursor.getString(2));
+                listadosegundorep.add(reporteDia);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return listadosegundorep;
+    }
+    public List<ReporteDia> listarCaldosRep () {
+        Calendar calendar = Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ROOT);
+        String fecha_final;
+        String fecha_inicial;
+
+        if (calendar.get(Calendar.HOUR_OF_DAY) < 24) {
+            fecha_final = df.format(calendar.getTime());
+
+            calendar.add(Calendar.DAY_OF_YEAR, -1);
+            calendar.set(Calendar.HOUR_OF_DAY, 24);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            fecha_inicial = df.format(calendar.getTime());
+        } else {
+            fecha_final = df.format(calendar.getTime());
+
+            calendar.set(Calendar.HOUR_OF_DAY, 24);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            fecha_inicial = df.format(calendar.getTime());
+        }
+
+        List<ReporteDia> listadocaldorep=new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM reporte_caldo_dia_view WHERE fecha_pedido >='"+fecha_inicial+"'"+" AND fecha_pedido < '"+fecha_final+"'",null);
+
+        if (cursor.moveToFirst()){
+            do{
+                ReporteDia reporteDia=new ReporteDia();
+                reporteDia.setNom_comi("Caldo de "+cursor.getString(0));
+                reporteDia.setCant_ven(cursor.getInt(1));
+                reporteDia.setFecha_repor(cursor.getString(2));
+                listadocaldorep.add(reporteDia);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return listadocaldorep;
+    }
+    public ArrayList<String> obtenerListaComidaReporte(List<ReporteDia> arrayList){
+        ArrayList<String> listacomidarep;
+        listacomidarep=new ArrayList<>();
+        for (int i=0;i<arrayList.size();i++){
+            listacomidarep.add(String.valueOf(arrayList.get(i).getNom_comi())+" | "+" Se vendieron "+ arrayList.get(i).getCant_ven()+" Plato(s)");
+        }
+        return listacomidarep;
     }
 
 }

@@ -33,7 +33,6 @@ public class PedidoActivity extends AppCompatActivity {
     List<Mesa> listadomesa;
     ArrayList<String> listafinalmesa;
     List<Caldo> listadocaldo;
-    ArrayList<String> listafinalcaldo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +56,6 @@ public class PedidoActivity extends AppCompatActivity {
         listadomesa=DBhelper.listarMesa();
         listafinalmesa=DBhelper.obtenerListaMesa(listadomesa);
         listadocaldo=DBhelper.listarIDCaldoDia();
-        listafinalcaldo=DBhelper.obtenerListaCaldosDia(listadocaldo);
         DBhelper.cerrar();
         ArrayAdapter<String> adap_segundos= new ArrayAdapter<>(this,R.layout.spinner_formato,listafinalsegundosdia);
         sp_segundo.setAdapter(adap_segundos);
@@ -75,11 +73,17 @@ public class PedidoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int id_segu,id_combi,id_mesa,id_caldo_dia;
                 String canti_segu_dia,canti_caldos_dia;
-                double cantidad_caldo_p,cantidad_segundo_p;
+                double cantidad_caldo_p,cantidad_segundo_p,cantidad_combinado_p;
 
                 DBhelper.abrir();
                 long id_tabla_pedido=DBhelper.consultIDTablaPedido();
-                id_caldo_dia= Integer.valueOf(String.valueOf(DBhelper.listarIDCaldoDia()));
+
+                id_caldo_dia=listadocaldo.get(0).getIdmenu();
+                if (id_caldo_dia==0){
+                    Toast.makeText(PedidoActivity.this, "Ingrese el caldo de hoy", Toast.LENGTH_SHORT).show();
+                    Intent caldo=new Intent(PedidoActivity.this,CaldoActivity.class);
+                    startActivity(caldo);
+                }
 
                 canti_caldos_dia = (String) sp_cant_cal.getSelectedItem();
                 if (Objects.equals(canti_caldos_dia, "0")){
@@ -88,44 +92,51 @@ public class PedidoActivity extends AppCompatActivity {
                     cantidad_caldo_p=Double.parseDouble(canti_caldos_dia);
                 }
 
-                canti_segu_dia = (String) sp_cant_cal.getSelectedItem();
+                canti_segu_dia = (String) sp_cant_seg.getSelectedItem();
                 if (Objects.equals(canti_segu_dia, "0")){
                     cantidad_segundo_p=0.0;
                 }else{
                     cantidad_segundo_p=Double.parseDouble(canti_segu_dia);
                 }
 
-                id_segu= (int) sp_segundo.getSelectedItem();
+                id_segu= sp_segundo.getSelectedItemPosition();
                 if (id_segu!=0){
                     id_segu=DBhelper.buscarId((String) sp_segundo.getSelectedItem());
                 }else{
                     id_segu=0;
                 }
-                id_combi=(int) sp_combinado.getSelectedItem();
+                id_combi= sp_combinado.getSelectedItemPosition();
                 if (id_combi!=0){
                     id_combi=DBhelper.buscarId((String) sp_combinado.getSelectedItem());
+                    cantidad_combinado_p=Double.parseDouble(canti_segu_dia);
                 }else{
                     id_combi=0;
+                    cantidad_combinado_p=0.0;
                 }
-                id_mesa=(int) sp_mesa.getSelectedItem();
+                id_mesa= sp_mesa.getSelectedItemPosition();
                 if (id_mesa!=0){
                     id_mesa=DBhelper.buscarIdMesa((String) sp_mesa.getSelectedItem());
                 }else{
                     id_mesa=0;
                 }
 
-                if (Objects.equals(canti_caldos_dia, "0")&& Objects.equals(canti_segu_dia, "0")&& id_segu==0 && id_combi==0 && id_mesa==0 ){
+                if (Objects.equals(canti_caldos_dia, "0")&& Objects.equals(canti_segu_dia, "0")&& id_segu==0 && id_combi==0 && id_mesa==0 && id_caldo_dia!=0 ){
                     Toast.makeText(PedidoActivity.this, "Ingrese su pedido", Toast.LENGTH_SHORT).show();
                 }else {
-                    if ( id_mesa==0 && ( id_segu!=0 || id_combi!=0 || !Objects.equals(canti_caldos_dia, "0"))){
-                        Toast.makeText(PedidoActivity.this, "Elija una mesa o para llevar", Toast.LENGTH_SHORT).show();
+                    if ( id_mesa==0 && ( id_segu!=0 || id_combi!=0 || Objects.equals(canti_segu_dia, "0"))){
+                        Toast.makeText(PedidoActivity.this, "Complete la cantidad y/o elija si es para la mesa o llevar", Toast.LENGTH_SHORT).show();
                     }else{
-                        DBhelper.guardarPedido(id_tabla_pedido,id_caldo_dia,cantidad_caldo_p,id_segu,cantidad_segundo_p,id_combi,id_mesa);
-                        sp_segundo.setSelection(0);
-                        sp_combinado.setSelection(0);
-                        sp_mesa.setSelection(0);
-                        sp_cant_seg.setSelection(0);
-                        sp_cant_cal.setSelection(0);
+                        if (!Objects.equals(canti_segu_dia, "0")&& id_segu==0){
+                            Toast.makeText(PedidoActivity.this, "Seleccione un segundo y/o un combinado", Toast.LENGTH_SHORT).show();
+                        }else{
+                            DBhelper.guardarPedido(id_tabla_pedido,id_caldo_dia,cantidad_caldo_p,id_segu,cantidad_segundo_p,id_combi,cantidad_combinado_p,id_mesa);
+                            sp_segundo.setSelection(0);
+                            sp_combinado.setSelection(0);
+                            sp_mesa.setSelection(0);
+                            sp_cant_seg.setSelection(0);
+                            sp_cant_cal.setSelection(0);
+                            Toast.makeText(PedidoActivity.this, "Pedido guardado exitosamente", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
 

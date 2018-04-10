@@ -11,7 +11,7 @@ import com.example.usuario.comidaapp.DatabaseLocal.ControlBDsand;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button caldo_menu,segundo,combinado,pedido,menu_del_dia,reportes;
+    Button caldo_menu,segundo,combinado,pedido,menu_del_dia,reportes,calculo_ganacias;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent menu_del_dia=new Intent(MainActivity.this,MenuDiaActivity.class);
                 startActivity(menu_del_dia);
+            }
+        });
+
+        calculo_ganacias=findViewById(R.id.btn_calc_gana);
+        calculo_ganacias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent calculo_gan=new Intent(MainActivity.this,CaldoActivity.class);
+                startActivity(calculo_gan);
             }
         });
 

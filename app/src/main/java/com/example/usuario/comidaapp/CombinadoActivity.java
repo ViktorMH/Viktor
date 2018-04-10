@@ -31,6 +31,9 @@ public class CombinadoActivity extends AppCompatActivity {
         final ControlBDsand DBhelper=new ControlBDsand(this);
 
         spinner= findViewById(R.id.sp_nom_combinado);
+        spinner.setFocusable(true);
+        spinner.setFocusableInTouchMode(true);
+        spinner.requestFocus();
         cant_combinados=findViewById(R.id.et_cant_combinados);
 
         guardar=findViewById(R.id.btn_guardar_c);
@@ -69,6 +72,7 @@ public class CombinadoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 spinner.setSelection(0);
                 cant_combinados.setText("");
+                Toast.makeText(CombinadoActivity.this, "Se realizó la limpieza", Toast.LENGTH_SHORT).show();
             }
         });
 

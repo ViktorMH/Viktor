@@ -54,6 +54,7 @@ final class ContratoLectorCampo {
         private static final String ID_SEGUNDO_P="idsegundo";
         private static final String CANT_SEGUNDO="cant_segundo";
         private static final String ID_COMBINADO_P="idcombinado";
+        private static final String CANT_COMBINADO="cant_combinado";
         private static final String ID_MESA_P="idmesa";
         private static final String FECHA_PEDIDO="fecha_pedido";
 
@@ -61,6 +62,9 @@ final class ContratoLectorCampo {
         private static final String SEGUNDOS_DIA_VIEW="segundo_dia_view";
         private static final String COMBINADOS_DIA_VIEW="combinado_dia_view";
         private static final String CALDO_DIA_VIEW="caldo_dia_view";
+        private static final String REPORTE_SEGUNDO_DIA_VIEW="reporte_segundo_dia_view";
+        private static final String REPORTE_COMBINADO_DIA_VIEW="reporte_combinado_dia_view";
+        private static final String REPORTE_CALDO_DIA_VIEW="reporte_caldo_dia_view";
     }
     /**Creacion de los códigos SQL*/
     private static final String VARCHAR_TYPE = " VARCHAR";
@@ -87,21 +91,21 @@ final class ContratoLectorCampo {
             CREATE_TABLE + EntradaAlimentacion.TABLA_CALDO + APERT +
                     EntradaAlimentacion.ID_TABLA_CALDO + INTEGER_TYPE + COMMA_SEP +
                     EntradaAlimentacion.ID_CALDO_C + INTEGER_TYPE + COMMA_SEP +
-                    EntradaAlimentacion.STOCK_CALDO + REAL_TYPE + COMMA_SEP +
+                    EntradaAlimentacion.STOCK_CALDO + INTEGER_TYPE + COMMA_SEP +
                     EntradaAlimentacion.FECHA_CALDO + TIMESTAMP_TYPE + NOT_NULL + CIERRE;
 
     static final String SQL_CREATE_TABLA_SEGUNDO =
             CREATE_TABLE + EntradaAlimentacion.TABLA_SEGUNDO + APERT +
                     EntradaAlimentacion.ID_TABLA_SEGUNDO + INTEGER_TYPE + COMMA_SEP +
                     EntradaAlimentacion.ID_SEGUNDO_S + INTEGER_TYPE + COMMA_SEP +
-                    EntradaAlimentacion.STOCK_SEGUNDO + REAL_TYPE + COMMA_SEP +
+                    EntradaAlimentacion.STOCK_SEGUNDO + INTEGER_TYPE + COMMA_SEP +
                     EntradaAlimentacion.FECHA_SEGUNDO + TIMESTAMP_TYPE + NOT_NULL + CIERRE;
 
     static final String SQL_CREATE_TABLA_COMBINADO =
             CREATE_TABLE + EntradaAlimentacion.TABLA_COMBINADO + APERT +
                     EntradaAlimentacion.ID_TABLA_COMBINADO + INTEGER_TYPE + COMMA_SEP +
                     EntradaAlimentacion.ID_COMBINADO_C + INTEGER_TYPE + COMMA_SEP +
-                    EntradaAlimentacion.STOCK_COMBINADO + REAL_TYPE + COMMA_SEP +
+                    EntradaAlimentacion.STOCK_COMBINADO + INTEGER_TYPE + COMMA_SEP +
                     EntradaAlimentacion.FECHA_COMBINADO + TIMESTAMP_TYPE + NOT_NULL + CIERRE;
 
 
@@ -123,35 +127,36 @@ final class ContratoLectorCampo {
                     EntradaAlimentacion.ID_SEGUNDO_P + INTEGER_TYPE + COMMA_SEP +
                     EntradaAlimentacion.CANT_SEGUNDO + INTEGER_TYPE + COMMA_SEP +
                     EntradaAlimentacion.ID_COMBINADO_P + INTEGER_TYPE + COMMA_SEP +
+                    EntradaAlimentacion.CANT_COMBINADO + INTEGER_TYPE + COMMA_SEP +
                     EntradaAlimentacion.ID_MESA_P + INTEGER_TYPE + COMMA_SEP +
                     EntradaAlimentacion.FECHA_PEDIDO + TIMESTAMP_TYPE + NOT_NULL + CIERRE;
 
     /** INSERCION DE DATOS A LA TABLA MENU*/
     static final String SQL_INSERT_DATA_TABLA_MENU="INSERT INTO menu (idmenu,nommenu) VALUES " +
-            "(1,'Trigo')," + //1
-            "(2,'Chaquepa')," + //2
-            "(3,'Sémola')," + //4
-            "(4,'Quinua')," + //5
-            "(5,'Arroz')," + //6
+            "(1,'Arroz')," +
+            "(2,'Chaquepa')," +
+            "(3,'Quinua')," +
+            "(4,'Sémola')," +
+            "(5,'Trigo')," +
 
-            "(6,'Picante')," + //7
-            "(7,'Guiso de Fideos')," + //8
-            "(8,'Lentejas')," + //9
-            "(9,'Tallarín')," + //10
-            "(10,'Arvejitas')," + //11
-            "(11,'Pallares')," + //12
-            "(12,'Frejoles')," + //13
-            "(13,'Chanfainita')," + //14
-            "(14,'Cau cau')," + //15
+            "(6,'Arvejitas')," +
+            "(7,'Cau cau')," +
+            "(8,'Chanfainita')," +
+            "(9,'Frejoles')," +
+            "(10,'Guiso de Fideos')," +
+            "(11,'Lentejas')," +
+            "(12,'Pallares')," +
+            "(13,'Picante')," +
+            "(14,'Tallarín')," +
 
-            "(15,'Pollo al horno')," + //16
-            "(16,'Bistec a la olla')," + //17
-            "(17,'Arroz con pollo')," + //18
-            "(18,'Saltado de mollejitas')," + //19
-            "(19,'Papa Rellena')," + //20
-            "(20,'Asado de carne')," + //21
-            "(21,'Asado de pollo')," + //22
-            "(22,'Pollo al sillao')," +//23
+            "(15,'Pollo al horno')," +
+            "(16,'Bistec a la olla')," +
+            "(17,'Arroz con pollo')," +
+            "(18,'Saltado de mollejitas')," +
+            "(19,'Papa Rellena')," +
+            "(20,'Asado de carne')," +
+            "(21,'Asado de pollo')," +
+            "(22,'Pollo al sillao')," +
             "(23,'Carne frita')," +
             "(24,'Pollo Frito')," +
             "(25,'Queso frito')," +
@@ -160,7 +165,8 @@ final class ContratoLectorCampo {
             "(28,'Trucha frita')," +
             "(29,'Hígado frito')," +
             "(30,'Pescado frito')," +
-            "(31,'Pejerrey frito');";
+            "(31,'Pejerrey frito')," +
+            "(32,'Picante de Guata');";
 
     /** INSERCION DE DATOS A LA TABLA MESA*/
     static final String SQL_INSERT_DATA_TABLA_MESA="INSERT INTO mesa (idmesa,nommesa) VALUES " +
@@ -204,11 +210,23 @@ final class ContratoLectorCampo {
             "FROM caldo INNER JOIN menu ON\n" +
             "caldo.idmenu=menu.idmenu ;";
 
-    static final String SQL_CREATE_VIEW_REPORTE_DIA="CREATE VIEW reporte_dia_view AS \n" +
-            "SELECT nommenu,cant_caldo,cant_segundo\n" +
-            "FROM pedido INNER JOIN caldo_dia_view ON\n" +
-            "pedido.idcaldo=caldo_dia_view.idmenu INNER JOIN" +
-            ";";
+    static final String SQL_CREATE_VIEW_REPORTE_SEGUNDO_DIA="CREATE VIEW reporte_segundo_dia_view AS \n" +
+            "SELECT menu.nommenu as segundos,SUM(cant_segundo) as total_segundos,fecha_pedido\n" +
+            "FROM pedido INNER JOIN menu ON\n" +
+            "pedido.idsegundo=menu.idmenu" +
+            " GROUP BY menu.nommenu;";
+
+    static final String SQL_CREATE_VIEW_REPORTE_COMBINADO_DIA="CREATE VIEW reporte_combinado_dia_view AS \n" +
+            "SELECT menu.nommenu as combinados,SUM(cant_combinado) as total_combinados,fecha_pedido\n" +
+            "FROM pedido INNER JOIN menu ON\n" +
+            "pedido.idcombinado=menu.idmenu" +
+            " GROUP BY menu.nommenu;";
+
+    static final String SQL_CREATE_VIEW_REPORTE_CALDO_DIA="CREATE VIEW reporte_caldo_dia_view AS \n" +
+            "SELECT menu.nommenu as caldos,SUM(cant_caldo) as total_caldos,fecha_pedido\n" +
+            "FROM pedido INNER JOIN menu ON\n" +
+            "pedido.idcaldo=menu.idmenu" +
+            " GROUP BY menu.nommenu;";
 
     static final String SQL_DROP_TABLA_MENU =
             DROP_TABLE_IF_EXISTS + EntradaAlimentacion.TABLA_MENU;
@@ -230,6 +248,11 @@ final class ContratoLectorCampo {
             DROP_TABLE_IF_EXISTS + EntradaAlimentacion.COMBINADOS_DIA_VIEW;
     static final String SQL_DROP_VIEW_CALDO_DIA =
             DROP_TABLE_IF_EXISTS + EntradaAlimentacion.CALDO_DIA_VIEW;
-
+    static final String SQL_DROP_VIEW_REPORTE_SEGUNDO_DIA =
+            DROP_TABLE_IF_EXISTS + EntradaAlimentacion.REPORTE_SEGUNDO_DIA_VIEW;
+    static final String SQL_DROP_VIEW_REPORTE_COMBINADO_DIA =
+            DROP_TABLE_IF_EXISTS + EntradaAlimentacion.REPORTE_COMBINADO_DIA_VIEW;
+    static final String SQL_DROP_VIEW_REPORTE_CALDO_DIA =
+            DROP_TABLE_IF_EXISTS + EntradaAlimentacion.REPORTE_CALDO_DIA_VIEW;
 }
 

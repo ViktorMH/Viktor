@@ -30,6 +30,9 @@ public class SegundoActivity extends AppCompatActivity {
         final ControlBDsand DBhelper=new ControlBDsand(this);
 
         spinner= findViewById(R.id.sp_nom_segundo);
+        spinner.setFocusable(true);
+        spinner.setFocusableInTouchMode(true);
+        spinner.requestFocus();
         cant_segundos=findViewById(R.id.et_cant_segundos);
 
         guardar=findViewById(R.id.btn_guardar_s);
@@ -68,6 +71,7 @@ public class SegundoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 spinner.setSelection(0);
                 cant_segundos.setText("");
+                Toast.makeText(SegundoActivity.this, "Se realizó la limpieza", Toast.LENGTH_SHORT).show();
             }
         });
 
