@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class CalculoActivity extends AppCompatActivity {
     Button inicio,limpiar,calcular;
     EditText cant_presas,precio_compra,precio_venta;
-    TextView ganancia;
+    TextView ganancia,cada_presa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +22,7 @@ public class CalculoActivity extends AppCompatActivity {
         precio_compra=findViewById(R.id.et_cost_com);
         precio_venta=findViewById(R.id.et_cost_vent);
         ganancia=findViewById(R.id.tv_ganan);
+        cada_presa=findViewById(R.id.tv_cada_presa);
 
         inicio=findViewById(R.id.btn_inicio_calc);
         inicio.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +40,7 @@ public class CalculoActivity extends AppCompatActivity {
                 precio_compra.setText("");
                 precio_venta.setText("");
                 ganancia.setText("......");
+                cada_presa.setText("......");
 
                 Toast.makeText(CalculoActivity.this, "Se realizó la limpieza", Toast.LENGTH_SHORT).show();
             }
@@ -51,6 +53,9 @@ public class CalculoActivity extends AppCompatActivity {
                 int canti_presas;
                 Double presi_compra,presi_venta,presi_ganancia;
                 canti_presas=Integer.valueOf(cant_presas.getText().toString());
+                presi_compra=Double.parseDouble(precio_compra.getText().toString());
+                presi_venta=Double.parseDouble(precio_venta.getText().toString());
+
 
                 cant_presas.setText("");
                 precio_compra.setText("");

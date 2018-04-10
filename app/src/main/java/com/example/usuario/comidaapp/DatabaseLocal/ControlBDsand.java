@@ -37,7 +37,7 @@ public class ControlBDsand {
     }
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
-        private static String DATABASE_NAME = "com16.db";
+        private static String DATABASE_NAME = "com17.db";
         private static int VERSION = 1;
 
         DatabaseHelper(Context context) {
