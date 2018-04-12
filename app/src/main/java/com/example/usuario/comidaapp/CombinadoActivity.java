@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.usuario.comidaapp.DatabaseLocal.ControlBDsand;
 import com.example.usuario.comidaapp.Entidades.Mimenu;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,10 +55,10 @@ public class CombinadoActivity extends AppCompatActivity {
                 }
                 id_combinado=DBhelper.buscarId((String) spinner.getSelectedItem());
                 if (id_combinado==0){
-                    Toast.makeText(CombinadoActivity.this, "Seleccione un combinado", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(CombinadoActivity.this, "Seleccione un combinado", R.style.toast_maso).show();
                 }else{
                     DBhelper.guardarCombinado(id_combinado,cantidad,id_tabla_combinado);
-                    Toast.makeText(CombinadoActivity.this, "Guardado exitosamente", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(CombinadoActivity.this, "Guardado exitosamente", R.style.toast_si).show();
                     spinner.setSelection(0);
                     cant_combinados.setText("");
                 }
@@ -72,7 +73,7 @@ public class CombinadoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 spinner.setSelection(0);
                 cant_combinados.setText("");
-                Toast.makeText(CombinadoActivity.this, "Se realizó la limpieza", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(CombinadoActivity.this, "Se realizó la limpieza", R.style.toast_si).show();
             }
         });
 

@@ -16,6 +16,7 @@ import com.example.usuario.comidaapp.Entidades.Cantidad;
 import com.example.usuario.comidaapp.Entidades.Combinado;
 import com.example.usuario.comidaapp.Entidades.Mesa;
 import com.example.usuario.comidaapp.Entidades.Segundo;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,13 +122,13 @@ public class PedidoActivity extends AppCompatActivity {
                 }
 
                 if (Objects.equals(canti_caldos_dia, "0")&& Objects.equals(canti_segu_dia, "0")&& id_segu==0 && id_combi==0 && id_mesa==0 && id_caldo_dia!=0 ){
-                    Toast.makeText(PedidoActivity.this, "Ingrese su pedido", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(PedidoActivity.this, "Ingrese su pedido", R.style.toast_maso).show();
                 }else {
                     if ( id_mesa==0 && ( id_segu!=0 || id_combi!=0 || Objects.equals(canti_segu_dia, "0"))){
-                        Toast.makeText(PedidoActivity.this, "Complete la cantidad y/o elija si es para la mesa o llevar", Toast.LENGTH_SHORT).show();
+                        StyleableToast.makeText(PedidoActivity.this, "Complete la cantidad y/o elija si es para la mesa o llevar", R.style.toast_maso).show();
                     }else{
                         if (!Objects.equals(canti_segu_dia, "0")&& id_segu==0){
-                            Toast.makeText(PedidoActivity.this, "Seleccione un segundo y/o un combinado", Toast.LENGTH_SHORT).show();
+                            StyleableToast.makeText(PedidoActivity.this, "Seleccione un segundo y/o un combinado", R.style.toast_maso).show();
                         }else{
                             DBhelper.guardarPedido(id_tabla_pedido,id_caldo_dia,cantidad_caldo_p,id_segu,cantidad_segundo_p,id_combi,cantidad_combinado_p,id_mesa);
                             sp_segundo.setSelection(0);
@@ -135,7 +136,7 @@ public class PedidoActivity extends AppCompatActivity {
                             sp_mesa.setSelection(0);
                             sp_cant_seg.setSelection(0);
                             sp_cant_cal.setSelection(0);
-                            Toast.makeText(PedidoActivity.this, "Pedido guardado exitosamente", Toast.LENGTH_SHORT).show();
+                            StyleableToast.makeText(PedidoActivity.this, "Pedido guardado exitosamente", R.style.toast_si).show();
                         }
                     }
                 }

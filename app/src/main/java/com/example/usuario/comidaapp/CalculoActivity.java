@@ -9,6 +9,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
+
+import java.text.DecimalFormat;
+
 public class CalculoActivity extends AppCompatActivity {
     Button inicio,limpiar,calcular;
     EditText cant_presas,precio_compra,precio_venta;
@@ -23,6 +27,8 @@ public class CalculoActivity extends AppCompatActivity {
         precio_venta=findViewById(R.id.et_cost_vent);
         ganancia=findViewById(R.id.tv_ganan);
         cada_presa=findViewById(R.id.tv_cada_presa);
+
+        cant_presas.requestFocus();
 
         inicio=findViewById(R.id.btn_inicio_calc);
         inicio.setOnClickListener(new View.OnClickListener() {
@@ -51,18 +57,32 @@ public class CalculoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int canti_presas;
-                Double presi_compra,presi_venta,presi_ganancia;
+                Double presi_compra;
+                Double presi_venta;
+                Double calculo_cada_presa;
+                Double calculo_ganancia;
+                String calc_pres,calc_gan;
                 canti_presas=Integer.valueOf(cant_presas.getText().toString());
                 presi_compra=Double.parseDouble(precio_compra.getText().toString());
                 presi_venta=Double.parseDouble(precio_venta.getText().toString());
+                if (!cant_presas.getText().toString().isEmpty() && !precio_compra.getText().toString().isEmpty() && !precio_venta.getText().toString().isEmpty()){
 
+                    calculo_cada_presa=presi_compra/canti_presas;
+                    calculo_ganancia=(presi_venta*canti_presas)- presi_compra;
 
-                cant_presas.setText("");
-                precio_compra.setText("");
-                precio_venta.setText("");
-                ganancia.setText("......");
+                    calc_pres=String.valueOf(calculo_cada_presa);
+                    calc_gan=String.valueOf(calculo_ganancia);
+                    ganancia.setText(String.format("%.2f",calculo_ganancia));
+                    cada_presa.setText(String.format("%.2f",calculo_cada_presa));
+                    if (calculo_ganancia>presi_compra){
+                        StyleableToast.makeText(CalculoActivity.this, "SI te combiene", R.style.toast_si).show();
+                    }else{
+                        StyleableToast.makeText(CalculoActivity.this, "NO te combiene", R.style.toast_no).show();
+                    }
 
-                Toast.makeText(CalculoActivity.this, "Se realizó el cálculo", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(CalculoActivity.this, "Ingrese toda la información solicitada", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.usuario.comidaapp.DatabaseLocal.ControlBDsand;
 import com.example.usuario.comidaapp.Entidades.Mimenu;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,10 +54,10 @@ public class SegundoActivity extends AppCompatActivity {
                 }
                 id_segundo=DBhelper.buscarId((String) spinner.getSelectedItem());
                 if (id_segundo==0){
-                    Toast.makeText(SegundoActivity.this, "Seleccione un segundo", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(SegundoActivity.this, "Seleccione un segundo", R.style.toast_maso).show();
                 }else{
                     DBhelper.guardarSegundo(id_segundo,cantidad,id_tabla_segundo);
-                    Toast.makeText(SegundoActivity.this, "Guardado exitosamente", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(SegundoActivity.this, "Guardado exitosamente", R.style.toast_si).show();
                     spinner.setSelection(0);
                     cant_segundos.setText("");
                 }
@@ -71,7 +72,7 @@ public class SegundoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 spinner.setSelection(0);
                 cant_segundos.setText("");
-                Toast.makeText(SegundoActivity.this, "Se realizó la limpieza", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(SegundoActivity.this, "Se realizó la limpieza", R.style.toast_si).show();
             }
         });
 

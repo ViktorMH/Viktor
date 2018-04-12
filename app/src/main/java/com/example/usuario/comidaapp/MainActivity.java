@@ -11,7 +11,7 @@ import com.example.usuario.comidaapp.DatabaseLocal.ControlBDsand;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button caldo_menu,segundo,combinado,pedido,menu_del_dia,reportes,calculo_ganacias;
+    Button caldo_menu,segundo,combinado,pedido,menu_del_dia,reportes,calculo_ganacias,mesa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         calculo_ganacias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent calculo_gan=new Intent(MainActivity.this,CaldoActivity.class);
+                Intent calculo_gan=new Intent(MainActivity.this,CalculoActivity.class);
                 startActivity(calculo_gan);
             }
         });
@@ -81,6 +81,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent reportes=new Intent(MainActivity.this,ReportesActivity.class);
                 startActivity(reportes);
+            }
+        });
+
+        mesa=findViewById(R.id.btn_mesa);
+        mesa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mesa=new Intent(MainActivity.this,MesaActivity.class);
+                startActivity(mesa);
             }
         });
     }

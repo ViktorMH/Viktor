@@ -34,9 +34,10 @@
         <activity
             android:name=".ReportesActivity"
             android:label="Reportes" />
-        <activity android:name=".CalculoActivity"
-            android:label="Cálculo de ganancias">
-        </activity>
+        <activity
+            android:name=".CalculoActivity"
+            android:label="Cálculo de ganancias"></activity>
+        <activity android:name=".MesaActivity"></activity>
     </application>
 
 </manifest>
