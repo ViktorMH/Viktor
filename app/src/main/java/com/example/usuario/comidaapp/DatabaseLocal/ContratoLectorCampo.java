@@ -166,7 +166,11 @@ final class ContratoLectorCampo {
             "(29,'Hígado frito')," +
             "(30,'Pescado frito')," +
             "(31,'Pejerrey frito')," +
-            "(32,'Picante de Guata');";
+            "(32,'Seco de carne')," +//sc
+            "(33,'Seco de pollo')," +//sp
+            "(34,'Estofado de pollo')," +//ep
+            "(35,'Estofado de carne')," +//ec
+            "(36,'Picante de Guata');";
 
     /** INSERCION DE DATOS A LA TABLA MESA*/
     static final String SQL_INSERT_DATA_TABLA_MESA="INSERT INTO mesa (idmesa,nommesa) VALUES " +

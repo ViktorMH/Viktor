@@ -129,7 +129,7 @@ public class ControlBDsand {
 
     public List<Mimenu> listarSegundos(){
         List<Mimenu> listasegundo=new ArrayList<>();
-        Cursor cursor=db.rawQuery("select nommenu from menu where idmenu>=15 and idmenu<=32 ", null);
+        Cursor cursor=db.rawQuery("select nommenu from menu where idmenu>=15 and idmenu<=36 ", null);
         if (cursor.moveToFirst()){
             do{
                 Mimenu mimenu=new Mimenu();
